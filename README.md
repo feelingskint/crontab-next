@@ -12,8 +12,10 @@ $ crontab-next '30 6 * * *' -n 3
 ## Install
 
 ```sh
-pip install git+https://github.com/FlamminSoftware/crontab-next
+pipx install git+https://github.com/FlamminSoftware/crontab-next
 ```
+
+or `pip install --user git+https://github.com/FlamminSoftware/crontab-next`.
 
 ## Usage
 
