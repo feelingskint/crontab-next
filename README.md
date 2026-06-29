@@ -19,7 +19,7 @@ or `pip install --user git+https://github.com/FlamminSoftware/crontab-next`.
 
 ## Usage
 
-    crontab-next EXPRESSION [-n COUNT] [--from 'YYYY-MM-DD HH:MM']
+    crontab-next EXPRESSION [-n COUNT] [--from 'YYYY-MM-DD HH:MM'] [--explain] [--json]
 
 Times are shown in your local timezone.
 
