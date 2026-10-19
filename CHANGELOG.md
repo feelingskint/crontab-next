@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- When both the day-of-month and day-of-week fields are restricted, a day now
+  matches if either one matches, per crontab(5).
 - Clearer error message for out-of-range values.
 - Syntax errors exit with status 2 (was 1), like other CLI usage errors.
 

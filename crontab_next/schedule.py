@@ -10,8 +10,16 @@ SEARCH_YEARS = 5
 
 
 def _day_matches(cron: Cron, day: date) -> bool:
+    """Whether the day field matches; per crontab(5), if both the day-of-month and
+    day-of-week fields are restricted, either one matching is enough."""
     weekday = day.isoweekday() % 7  # cron counts from Sunday = 0
-    return day.day in cron.days and weekday in cron.weekdays
+    dom = day.day in cron.days
+    dow = weekday in cron.weekdays
+    if cron.any_day:
+        return dow
+    if cron.any_weekday:
+        return dom
+    return dom or dow
 
 
 def next_runs(cron: Cron, start: datetime, count: int = 5) -> list[datetime]:

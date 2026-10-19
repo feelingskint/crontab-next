@@ -52,9 +52,13 @@ def _weekdays(days: frozenset[int]) -> str:
 
 def describe(cron: Cron) -> str:
     parts = [_time(cron)]
-    if not cron.any_day:
+    if not cron.any_day and not cron.any_weekday:
+        # Per crontab(5), a restricted day-of-month and day-of-week match either one.
+        parts.append(f"on day {_join([str(d) for d in sorted(cron.days)])} of the month "
+                     f"or on {_weekdays(cron.weekdays)}")
+    elif not cron.any_day:
         parts.append(f"on day {_join([str(d) for d in sorted(cron.days)])} of the month")
-    if not cron.any_weekday:
+    elif not cron.any_weekday:
         parts.append(f"on {_weekdays(cron.weekdays)}")
     if len(cron.months) < 12:
         parts.append(f"in {_join([MONTH_NAMES[m - 1] for m in sorted(cron.months)])}")
