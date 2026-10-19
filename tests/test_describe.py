@@ -33,6 +33,9 @@ class DescribeTests(unittest.TestCase):
     def test_day_and_month(self):
         self.assertEqual(d("0 0 1 jan,jul *"), "At 00:00, on day 1 of the month, in January and July")
 
+    def test_day_and_weekday_either(self):
+        self.assertEqual(d("0 0 1,15 * fri"), "At 00:00, on day 1 and 15 of the month or on Friday")
+
     def test_six_times(self):
         self.assertEqual(d("0,30 9,13,17 * * *"), "At 09:00, 09:30, 13:00, 13:30, 17:00 and 17:30")
 
